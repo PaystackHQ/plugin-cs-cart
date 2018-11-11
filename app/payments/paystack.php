@@ -127,6 +127,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
 
 
     $url = fn_url("payment_notification.return?payment=paystack", BOOTSTRAP, 'current');
+    $currency = fn_get_secondary_currency();
     $maintotal = $order_info['total']+$order_info['payment_surcharge'];
     $mode = $processor_data['processor_params']['paystack_mode'];
     if ($mode == 'test') {
@@ -143,6 +144,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
               src="https://js.paystack.co/v1/inline.js"
               data-key="'.$key.'"
               data-email="'.$order_info['email'].'"
+              data-currency= "'.$currency.'";
               data-amount="'.($maintotal*100).'"
               data-ref="'.$order_id.'"
             >
