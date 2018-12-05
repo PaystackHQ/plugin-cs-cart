@@ -1,10 +1,11 @@
-# Paystack-Cs-Cart
-Paystack for CS-Cart v4
-Allows you to use Paystack payment gateway with the CS Cart Store.
 
-## Description
+# Paystack CS Cart Plugin
 
-​This is the Paystack payment gateway plugin for CS Cart. Allows nigerian merchants to accept credit cards, debit cardswith the CS Cart store. It uses a seamless integration, allowing the customer to pay on your website without being redirected away from your CS Cart website.
+Welcome to the Paystack CS Cart plugin repository on GitHub. 
+
+Here you can browse the source code, look at open issues and keep track of development.
+
+## Installation 
 
 ## Installation
 1. Ensure you have latest version of CS Cart installed.
@@ -21,6 +22,21 @@ Allows you to use Paystack payment gateway with the CS Cart Store.
 5. Enter your Paystack Key ID and Key Secret which you can get from Paystack Dashboard.
 6. Click 'Save'
 
-### Support
+## Documentation
 
-Visit [https://paystack.com](https://paystack.com) for support requests or email douglas@paystack.com.
+* [Paystack Documentation](https://developers.paystack.co/v2.0/docs/)
+* [Paystack Helpdesk](https://paystack.com/help)
+
+## Support
+
+For bug reports and feature requests directly related to this plugin, please use the [issue tracker](https://github.com/PaystackHQ/plugin-cs-cart/issues). 
+
+For general support or questions about your Paystack account, you can reach out by sending a message from [our website](https://paystack.com/contact).
+
+## Community
+
+If you are a developer, please join our Developer Community on [Slack](https://slack.paystack.com).
+
+## Contributing to the CS Cart plugin
+
+If you have a patch or have stumbled upon an issue with the CS Cart plugin, you can contribute this back to the code. Please read our [contributor guidelines](https://github.com/PaystackHQ/plugin-cs-cart/blob/master/CONTRIBUTING.md) for more information how you can do this.
