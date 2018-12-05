@@ -5,8 +5,6 @@ Welcome to the Paystack CS Cart plugin repository on GitHub.
 
 Here you can browse the source code, look at open issues and keep track of development.
 
-## Installation 
-
 ## Installation
 1. Ensure you have latest version of CS Cart installed.
 2. Download the zip of this repo.
