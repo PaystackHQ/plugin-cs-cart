@@ -1,6 +1,44 @@
 <?php
 use Tygh\Registry;
 
+class cs_cart_paystack_plugin_tracker {
+  var $public_key;
+  var $plugin_name;
+  function __construct($plugin, $pk){
+      //configure plugin name
+      //configure public key
+      $this->plugin_name = $plugin;
+      $this->public_key = $pk;
+  }
+
+ 
+
+  function log_transaction_success($trx_ref){
+      //send reference to logger along with plugin name and public key
+      $url = "https://plugin-tracker.paystackintegrations.com/log/charge_success";
+
+      $fields = [
+          'plugin_name'  => $this->plugin_name,
+          'transaction_reference' => $trx_ref,
+          'public_key' => $this->public_key
+      ];
+
+      $fields_string = http_build_query($fields);
+
+      $ch = curl_init();
+
+      curl_setopt($ch,CURLOPT_URL, $url);
+      curl_setopt($ch,CURLOPT_POST, true);
+      curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+
+      curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+
+      //execute post
+      $result = curl_exec($ch);
+      //  echo $result;
+  }
+}
+
 function fn_paystack_adjust_amount($price, $payment_currency){
     $currencies = Registry::get('currencies');
 
@@ -100,6 +138,19 @@ if (defined('PAYMENT_NOTIFICATION')) {
 
 
                 if($success === true){
+
+                  //PSTK - Logger
+                  $mode = $processor_data['processor_params']['paystack_mode'];
+                  if ($mode == 'test') {
+                    $pk  = $processor_data['processor_params']['paystack_tpk'];
+                  }else{
+                    $pk  = $processor_data['processor_params']['paystack_lpk'];
+                  }
+                  $pstk_logger = new cs_cart_paystack_plugin_tracker('cs-cart', $pk);
+                  $pstk_logger->log_transaction_success($code);
+
+                  //
+
                     $pp_response['order_status'] = 'P';
                     $pp_response['transaction_id'] = $code;
                     $pp_response['Status'] = 'Payment Successful';
@@ -146,7 +197,8 @@ if (defined('PAYMENT_NOTIFICATION')) {
               data-email="'.$order_info['email'].'"
               data-currency= "'.$currency.'";
               data-amount="'.($maintotal*100).'"
-              data-ref="'.$order_id.'"
+              data-ref="'.$order_id.'" 
+              data-metadata=`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`
             >
             </script>
           </form>';
