@@ -17,11 +17,11 @@ class cs_cart_paystack_plugin_tracker {
       //send reference to logger along with plugin name and public key
       $url = "https://plugin-tracker.paystackintegrations.com/log/charge_success";
 
-      $fields = [
+      $fields = array(
           'plugin_name'  => $this->plugin_name,
           'transaction_reference' => $trx_ref,
           'public_key' => $this->public_key
-      ];
+      );
 
       $fields_string = http_build_query($fields);
 
