@@ -17,11 +17,11 @@ class cs_cart_paystack_plugin_tracker {
       //send reference to logger along with plugin name and public key
       $url = "https://plugin-tracker.paystackintegrations.com/log/charge_success";
 
-      $fields = [
+      $fields = array(
           'plugin_name'  => $this->plugin_name,
           'transaction_reference' => $trx_ref,
           'public_key' => $this->public_key
-      ];
+      );
 
       $fields_string = http_build_query($fields);
 
@@ -198,7 +198,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
               data-currency= "'.$currency.'";
               data-amount="'.($maintotal*100).'"
               data-ref="'.$order_id.'" 
-              data-metadata=`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`
+              data-metadata="'.`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`.'"
             >
             </script>
           </form>';
