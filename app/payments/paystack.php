@@ -198,7 +198,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
               data-currency= "'.$currency.'";
               data-amount="'.($maintotal*100).'"
               data-ref="'.$order_id.'" 
-              data-metadata=`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`
+              data-metadata="'.`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`.'"
             >
             </script>
           </form>';
