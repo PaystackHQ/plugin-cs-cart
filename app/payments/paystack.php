@@ -177,7 +177,8 @@ if (defined('PAYMENT_NOTIFICATION')) {
 }else {
 
 
-    $url = fn_url("payment_notification.return?payment=paystack", BOOTSTRAP, 'current');
+    //$url = fn_url("payment_notification.return?payment=paystack", BOOTSTRAP, 'current');
+    $url = fn_url("payment_notification.return?payment=paystack");
     $currency = fn_get_secondary_currency();
     $maintotal = $order_info['total']+$order_info['payment_surcharge'];
     $mode = $processor_data['processor_params']['paystack_mode'];
