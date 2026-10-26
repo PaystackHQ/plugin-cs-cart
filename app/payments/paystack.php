@@ -91,7 +91,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
         fn_flush();
         $code = $_REQUEST['merchant_order_id'];
         $merchant_order_id = fn_paystack_place_order($_REQUEST['merchant_order_id']);
-        $amount = $_REQUEST['amount'];
+        $amount = isset($_REQUEST['amount']) ? $_REQUEST['amount'] : '';
 
         if(!empty($merchant_order_id) and !empty($amount)){
           if (fn_check_payment_script('paystack.php', $merchant_order_id, $processor_data)) {
@@ -120,11 +120,9 @@ if (defined('PAYMENT_NOTIFICATION')) {
                 if (curl_errno($ch)) {   // should be 0
                     // curl ended with an error
                     $cerr = curl_error($ch);
-                    curl_close($ch);
                     throw new Exception("Curl failed with response: '" . $cerr . "'.");
                 }
-                curl_close ($ch);
-                if(($verification->status===false) || (!property_exists($verification, 'data')) || ($verification->data->status !== 'success')){
+                if(!is_object($verification) || (isset($verification->status) && $verification->status===false) || (!property_exists($verification, 'data')) || (!isset($verification->data->status)) || ($verification->data->status !== 'success')){
                   $success = false;
                   $error = "";
                 }else{
@@ -180,7 +178,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
     //$url = fn_url("payment_notification.return?payment=paystack", BOOTSTRAP, 'current');
     $url = fn_url("payment_notification.return?payment=paystack");
     $currency = fn_get_secondary_currency();
-    $maintotal = $order_info['total']+$order_info['payment_surcharge'];
+    $maintotal = $order_info['total']+(isset($order_info['payment_surcharge']) ? $order_info['payment_surcharge'] : 0);
     $mode = $processor_data['processor_params']['paystack_mode'];
     if ($mode == 'test') {
       $key  = $processor_data['processor_params']['paystack_tpk'];
@@ -199,7 +197,7 @@ if (defined('PAYMENT_NOTIFICATION')) {
               data-currency= "'.$currency.'";
               data-amount="'.($maintotal*100).'"
               data-ref="'.$order_id.'" 
-              data-metadata="'.`{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}`.'"
+              data-metadata="'.htmlspecialchars('{"custom_fields": [{"display_name": "Plugin","variable_name": "plugin","value": "cs-cart"}]}', ENT_QUOTES).'"
             >
             </script>
           </form>';
