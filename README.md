@@ -7,8 +7,8 @@ Here you can browse the source code, look at open issues and keep track of devel
 
 ## Requirements
 
-- PHP with the 21 Oct 2026 security fixes for critical remote code execution flaws (GHSA-w8hw-w9fx-j79w, GHSA-6wmf-4rv5-p3rp; [php.net advisory](https://www.php.net/releases/8_2_35.php)): **8.2.35, 8.3.36, 8.4.27, 8.5.12 or later**. PHP 8.1 and older no longer receive security fixes.
-- CS-Cart / Multi-Vendor **4.18.1 or later**, the first version that supports PHP 8.2 ([CS-Cart system requirements](https://docs.cs-cart.com/latest/install/system_requirements.html)). CS-Cart 4.17.x and older cannot run PHP 8.2 or later, so they cannot run a patched PHP; please upgrade CS-Cart. As of CS-Cart's [September 2026 announcement](https://www.cs-cart.com/blog/php-and-postgresql-support-in-cs-cart/), PHP 8.2 and 8.3 are fully supported and support for 8.4 and 8.5 is still in development, so use PHP 8.2.35 or 8.3.36 (or later patch releases) for now.
+- PHP with the 19 Nov 2026 security fixes, which include critical remote code execution flaws in PHP-FPM, sessions and other components and an incomplete fix for October's flaws ([php.net advisory](https://www.php.net/releases/8_2_36.php)): **8.2.36, 8.3.37, 8.4.28, 8.5.13 or later**. These releases also contain the 21 Oct 2026 fixes (GHSA-w8hw-w9fx-j79w, GHSA-6wmf-4rv5-p3rp). PHP 8.1 and older no longer receive security fixes.
+- CS-Cart / Multi-Vendor **4.18.1 or later**, the first version that supports PHP 8.2 ([CS-Cart system requirements](https://docs.cs-cart.com/latest/install/system_requirements.html)). CS-Cart 4.17.x and older cannot run PHP 8.2 or later, so they cannot run a patched PHP; please upgrade CS-Cart. As of CS-Cart's [September 2026 announcement](https://www.cs-cart.com/blog/php-and-postgresql-support-in-cs-cart/), PHP 8.2 and 8.3 are fully supported and support for 8.4 and 8.5 is still in development, so use PHP 8.2.36 or 8.3.37 (or later patch releases) for now.
 
 ## Installation
 1. Ensure you have the latest version of CS Cart installed (at least 4.18.1, see Requirements above).
